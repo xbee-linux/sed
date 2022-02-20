@@ -1,0 +1,36 @@
+schema-version: 1.0
+
+type: builder
+
+description: |
+  The Sed package contains a stream editor.
+  Installed program: sed
+  Installed directory: /usr/share/doc/sed-4.8
+  Short Descriptions
+    sed: Filters and transforms text files in a single pass
+
+in:
+  version: 4.8
+
+dependencies:
+  - texinfo
+  - perl
+
+provision:
+  - url:
+      from: https://ftp.gnu.org/gnu/sed/sed-{% version %}.tar.xz
+      todir: "{% xbeeSrc %}"
+  - env: PERL5LIB=/usr/share/texinfo:/usr/share/texinfo/lib/libintl-perl/lib:/usr/share/texinfo/lib/Text-Unidecode/lib:/usr/share/texinfo/lib/Unicode-EastAsianWidth/lib
+
+build:
+  - shell:
+      cmds:
+        - ./configure --prefix=/usr
+        - make
+        - make html
+        - make install DESTDIR={% xbeeOut %}
+        - install -d -m755           {% xbeeOut %}/share/doc/sed-{% version %}
+        - install -m644 doc/sed.html {% xbeeOut %}/share/doc/sed-{% version %}
+      directory: "{% xbeeSrc %}/sed-{% version %}"
+
+

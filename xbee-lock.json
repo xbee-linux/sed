@@ -1,0 +1,16 @@
+{
+    "Ids": [
+        {
+            "From": {
+                "origin": "https://github.com/xbee-linux/texinfo.git"
+            },
+            "Commit": "068370c9a7c1c6c0cc0ad76637556f35a1f64563"
+        },
+        {
+            "From": {
+                "origin": "https://github.com/xbee-linux/perl.git"
+            },
+            "Commit": "abbe40e2b608cc97372649c393d612a22896c54f"
+        }
+    ]
+}
